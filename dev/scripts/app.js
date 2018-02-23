@@ -17,61 +17,108 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      scores: []
-      
+      scores: [{
+        score: []
+      }],
+      score1: '',
+      score2: '',
+      score3: '', 
+      score4: '', 
+      score5: '', 
+      score6: '', 
+      score7: '', 
+      score8: '', 
+      score9: '', 
     }
     this.addScore = this.addScore.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
     handleChange(e) {
+      console.log(e);
       this.setState({
         [e.target.id]: e.target.value
       });
-      console.log(e);
+      // console.log(e.target.id);
     }
 
-    //gets data from firebase
+    //  gets data from firebase
     componentDidMount() {
       const dbRef = firebase.database().ref();
 
-      //gets value of items from firebase
+      //  gets value of items from firebase
       dbRef.on('value', (fireBaseData) => {
         // console.log(fireBaseData.val());
-        const data = fireBaseData.val();
-        const state = [];
-        console.log(value);
-        // for (let key in data) {
-        //   // console.log(key);
-        //   // // console.log(data[key]);
-        //   // // Ki ki's key exchange
-        //   // // Here we use the value stored in the key
-        //   // // variable to access the object stored at that location.
-        //   // //Then we add a new property to that object, called key(confusing right?)
-        //   // //And assign it the value of, key.
-        //   data[key].key = key;
-        //   state.push(data[key]);
-        //   console.log(key);
-        // }
+        //  returns the scores into an array
+        const scoresData = fireBaseData.val();
+        const scoresArray = [];
 
-      })
+        for(let scoreKey in scoresData){
+          // console.log(scoreKey);
+          //  returns an array of objects
+          scoresData[scoreKey].key = scoreKey;
+          scoresArray.push(scoresData[scoreKey])
+      }})
+          //  prints results to the page
+          // this.setState({
+          //   scores: scoresArray ////////////////////////////////////// wrong value??
+          // });
     }
 
     //
     
-
-    addScore(x) {
+    //adding score to firebase
+    addScore(e) {
       e.preventDefault();
-      const score = {
-        score: this.state.score
+      //grabs the users score input
+      // console.log('change');
+      const userScore1 = {
+        score1: this.state.score1,
+        score2: this.state.score2,
+        score3: this.state.score3,
+        score4: this.state.score4,
+        score5: this.state.score5,
+        score6: this.state.score6,
+        score7: this.state.score7,
+        score8: this.state.score8,
+        score9: this.state.score9
       }
-      const dbRef = firebase.database().val();
-      dbRef.push(userScore)
-      this.setState ({
-        score: ''
-      })
-      console.log(this.state.score);
+      //pushes item to main firebase database
+      // console.log(userScore);
+      // pushes values for player 1
+      const dbRef = firebase.database().ref('/Player1');
+      dbRef.push(userScore1);
+
+      // const dbRef = firebase.database().ref('/Player2');
+      // dbRef.push(userScore2);
+
+
+      // this.setState ({
+      //   score: ''
+      //   // score1: '',
+      //   // score2: '',
+      //   // score3: '',
+      //   // score4: '',
+      //   // score5: '',
+      //   // score6: '',
+      //   // score7: '',
+      //   // score8: '',
+      //   // score9: ''
+        
+      // })
     }
+
+    retrieveScore(e) {
+      e.preventDefault();
+
+      const dbRef = firebase.database().ref('/Player1');
+      dbRef.on('value', (data) => {
+        console.log(data.val());
+      });
+
+
+    }
+    // console.log(this.state.score);
 
     render() {
       return (
@@ -107,16 +154,57 @@ class App extends React.Component {
               </tr>
               <tr className="player player1">
                 <th><input name="person" /></th>
-                <td><input className = "scoreInput" name="score" onChange={this.handleChange} value={this.state.score} type="text" /></td>
-                <td><input className = "scoreInput" name="score" onChange={this.handleChange} value={this.state.score} type="text" /></td>
-                <td><input className = "scoreInput" name="score" onChange={this.handleChange} value={this.state.score} type="text" /></td>
-                <td><input className = "scoreInput" name="score" onChange={this.handleChange} value={this.state.score} type="text" /></td>
-                <td><input className = "scoreInput" name="score" onChange={this.handleChange} value={this.state.score} type="text" /></td>
-                <td><input className = "scoreInput" name="score" onChange={this.handleChange} value={this.state.score} type="text" /></td>
-                <td><input className = "scoreInput" name="score" onChange={this.handleChange} value={this.state.score} type="text" /></td>
-                <td><input className = "scoreInput" name="score" onChange={this.handleChange} value={this.state.score} type="text" /></td>
-                <td><input className = "scoreInput" name="score" onChange={this.handleChange} value={this.state.score} type="text" /></td>
-                <td><input className = "scoreInput" name="score" onChange={this.handleChange} value={this.state.score} type="text" /></td>
+                <td>
+                  <form onSubmit={this.addScore}>
+                    <input className ="scoreInput" id="score1" name="score" onChange={this.handleChange} value={this.state.score} type="text" />
+                  </form>
+                </td>
+                <td>
+                  <form onSubmit={this.addScore}>
+                    <input className ="scoreInput" id="score2" name="score" onChange={this.handleChange} value={this.state.score} type="text" />
+                  </form>
+                </td>
+                <td>
+                  <form onSubmit={this.addScore}>
+                    <input className ="scoreInput" id="score3" name="score" onChange={this.handleChange} value={this.state.score} type="text" />
+                  </form>
+                </td>
+                <td>
+                  <form onSubmit={this.addScore}>
+                    <input className ="scoreInput" id="score4" name="score" onChange={this.handleChange} value={this.state.score} type="text" />
+                  </form>
+                </td>
+                <td>
+                  <form onSubmit={this.addScore}>
+                    <input className ="scoreInput" id="score5" name="score" onChange={this.handleChange} value={this.state.score} type="text" />
+                  </form>
+                </td>
+                <td>
+                  <form onSubmit={this.addScore}>
+                    <input className ="scoreInput" id="score6" name="score" onChange={this.handleChange} value={this.state.score} type="text" />
+                  </form>
+                </td>
+                <td>
+                  <form onSubmit={this.addScore}>
+                    <input className ="scoreInput" id="score7" name="score" onChange={this.handleChange} value={this.state.score} type="text" />
+                  </form>
+                </td>
+                <td>
+                  <form onSubmit={this.addScore}>
+                    <input className ="scoreInput" id="score8" name="score" onChange={this.handleChange} value={this.state.score} type="text" />
+                  </form>
+                </td>
+                <td>
+                  <form onSubmit={this.addScore}>
+                    <input className ="scoreInput" id="score9" name="score" onChange={this.handleChange} value={this.state.score} type="text" />
+                  </form>
+                </td>
+                <td>
+                  <form onSubmit={this.addScore}>
+                    <input className ="scoreInput" id ="scoreFront" name="score" onChange={this.handleChange} value={this.state.score} type="text" />
+                  </form>
+                </td>
+
               </tr>
               <tr className="player player2">
                 <th><input name="person" /></th>
