@@ -1,17 +1,22 @@
-body {
-    // background-color: green;
+// body {
+//     // background-color: green;
+//     // height: 100vh;
+// }
+
+.background{
     background-image: url("../../../assets/KukuiulaGolfHole14.jpg");
     background-size: cover;
     background-position: center;
     text-align: center;
-    // height: 100vh;
+    background-repeat: no-repeat;
+    
 }
 
 .wrapper {
     height: 100vh;
     margin: 0 auto;
     width: 1000px;
-    // justify-content: center;
+    justify-content: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,6 +55,10 @@ h3{
 table, td, th {
     border: 1px solid black;
     border-spacing: 0px;
+}
+
+td{
+    width: 22px;
 }
 
 .par {
