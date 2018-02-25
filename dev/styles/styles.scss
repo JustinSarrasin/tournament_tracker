@@ -1,5 +1,50 @@
 body {
-    background-color: green;
+    // background-color: green;
+    background-image: url("../../../assets/KukuiulaGolfHole14.jpg");
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    // height: 100vh;
+}
+
+.wrapper {
+    height: 100vh;
+    margin: 0 auto;
+    width: 1000px;
+    // justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1{
+    justify-content: center;
+    text-align: center;
+    font-size: 80px;
+}
+
+h3{
+    font-size: 40px;
+    margin: 80px;
+}
+
+.container {
+    // height: ;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.scorecard {
+    display: flex;
+    // margin: 0 auto;
+    // margin: 100px;
+    // justify-content: center;
+    // align-content: center;
+    // align-self: center;
+    align-items: center;
 }
 
 table, td, th {
@@ -21,6 +66,7 @@ table, td, th {
 
 .yards {
     background: blue;
+    color: white;
 }
 
 .holes {
