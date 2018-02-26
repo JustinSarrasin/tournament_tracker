@@ -29,16 +29,19 @@ class App extends React.Component {
       score9: ''
     }
     
+    
     this.addScore = this.addScore.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.createAccount = this.createAccount.bind(this);
+    this.createUser = this.createUser.bind(this);
   }
 
     handleChange(e) {
-      console.log(e);
+      // console.log(e);
       this.setState({
         [e.target.id]: e.target.value
       });
-      console.log(e.target.id);
+      // console.log(e.target.id);
     }
 
     //  gets data from firebase
@@ -51,20 +54,19 @@ class App extends React.Component {
         //  returns the scores into an array
         const scoresData = fireBaseData.val();
         let scoresArray = [];
-          console.log(scoresData);
+          // console.log(scoresData);
         for(let scoreKey in scoresData){
           // console.log(scoreKey);
           //  returns an array of objects
           scoresData[scoreKey].key = scoreKey;
           // scoresArray.push(scoresData[scoreKey])
           // console.log(scoresKey[scoresData]);
-          /////////////////////////////////////////////////////////////////problem from controlled to uncontrolled????
           const gameScore = scoresData[scoreKey];
           const gameScoreArray =[];
           for(let scoreHole in gameScore){
             // gameScore[scoreHole].key = scoreHole;
             gameScoreArray.push(gameScore[scoreHole])
-            console.log(gameScore[scoreHole]);
+            // console.log(gameScore[scoreHole]);
           }
           // console.log(gameScoreArray);
           scoresArray.push(gameScoreArray);
@@ -99,60 +101,57 @@ class App extends React.Component {
       // pushes values for player 1
       const dbRef = firebase.database().ref('/Player1');
       dbRef.push(userScore1);
-
-      // const dbRef = firebase.database().ref('/Player2');
-      // dbRef.push(userScore2);
-
-        // this.state.score1 = '',
-        // this.state.score2 = '',
-        // this.state.score3 = '',
-        // this.state.score4 = '',
-        // this.state.score5 = '',
-        // this.state.score6 = '',
-        // this.state.score7 = '',
-        // this.state.score8 = '',
-        // this.state.score9 = ''
-
-
-      // this.setState ({
-      //   score: ''
-      //   // score1: '',
-      //   // score2: '',
-      //   // score3: '',
-      //   // score4: '',
-      //   // score5: '',
-      //   // score6: '',
-      //   // score7: '',
-      //   // score8: '',
-      //   // score9: ''
-        
-      // })
     }
 
-    // retrieveScore(e) {
-    //   e.preventDefault();
 
-    //   const dbRef = firebase.database().ref('/Player1');
-    //   dbRef.on('value', (data) => {
-    //     console.log(data.val());
+    // getTotal(t){  
+    //   const sum = scores.reduce((total, amount) => {
+    //     return total + amount
     //   });
-
-
+    //   console.log(sum);
     // }
-    // console.log(this.state.score);
+    
+    createAccount(e){
+      e.preventDefault();
+    }
+    
+    createUser(e){
+      e.preventDefault();
+      const password = this.newPassword.value;
+      const confirm = this.confirmPassword.value;
+      if(password === confirm){
 
-    getTotal(t){
-      // function add(a, b) {
-      //   return a + b;
-      // }
-      // const total = add(this.state.score1, this.state.score1);
-      
-      // console.log(total);
+      }else {
+        alert("Check Password")
+      }
     }
 
     render() {
       return (
         <div className="background">
+          <header>
+            <nav>
+              <a href="" onClick={this.createAccount}>Create Account</a>
+              <a href="" onClick={this.showLogIn}>Log In</a>
+              <a href="" onClick={this.logout}>Logout</a>
+            </nav>
+            <div className="signUp" ref={ref => this.signUp = ref}>
+              <form action="" onSubmit={this.createAccount}>
+                <div>
+                  <label htmlFor="newEmail">Email</label>
+                  <input type="text" name="newEmail" ref={ref => this.newEmail = ref}/>
+                </div>
+                <div>
+                  <label htmlFor="newPassword">Password</label>
+                  <input type="text" name="newPassword" ref={ref => this.newPassword =ref}/>
+                </div>
+                <div>
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <input type="text" name="confirmPassword" ref={ref => this.confirmPassword =ref}/>
+                </div>
+              </form>
+            </div>
+          </header>
           <div className="wrapper">
             <div className="container">
             <h1>Tournament Tracker</h1>
@@ -237,19 +236,41 @@ class App extends React.Component {
                       </form>
                     </td>
                   </tr>
-                  <tr className="user1Scores player">
-                    <th>Player1</th>
-                      <td className="results">
-                        {this.scores[0].map((result, i) => {
-                          return(
-                            <td key={result.key}></td>
-                          )
-                        })}
-                      {/* this.state.data.map((item,i) => <td key={i}>Test</td>)} */}
-                        
-                      </td>
+                  <tr className="player">
+                    <th>Team 1</th>
+                    <td>{this.state.score1}</td>
+                    <td>{this.state.score2}</td>
+                    <td>{this.state.score3}</td>
+                    <td>{this.state.score4}</td>
+                    <td>{this.state.score5}</td>
+                    <td>{this.state.score6}</td>
+                    <td>{this.state.score7}</td>
+                    <td>{this.state.score8}</td>
+                    <td>{this.state.score9}</td>
+                    <td></td>
+                  </tr>
+          
+                  {/* //////////////////////////////////////////Looping array into the table????????? */}
+
+                  <tr>
+                    <th>Player 1</th>
+                    <td>
+                      {this.state.scores.map((item, i) => {
+                        return <p>{item}</p>
+                      console.log(console.log[0]);
+                      })}
+                      
+                    </td>
                   </tr>
 
+
+                      {/* this.state.data.map((item,i) => <td key={i}>Test</td>)} */}
+                      
+                      {/* </td>
+                  </tr>
+
+
+                  
                   {/* <tr className="player player2">
                     <th>Input Score</th>
                     <td>
