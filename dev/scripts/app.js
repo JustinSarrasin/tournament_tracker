@@ -99,7 +99,7 @@ class App extends React.Component {
       //pushes item to main firebase database
       // console.log(userScore);
       // pushes values for player 1
-      const dbRef = firebase.database().ref('/Player1');
+      const dbRef = firebase.database().ref('/Player1').set({userScore1});
       dbRef.push(userScore1);
     }
 
@@ -236,7 +236,7 @@ class App extends React.Component {
                       </form>
                     </td>
                   </tr>
-                  <tr className="player">
+                  {/* <tr className="player">
                     <th>Team 1</th>
                     <td>{this.state.score1}</td>
                     <td>{this.state.score2}</td>
@@ -248,7 +248,7 @@ class App extends React.Component {
                     <td>{this.state.score8}</td>
                     <td>{this.state.score9}</td>
                     <td></td>
-                  </tr>
+                  </tr> */}
           
                   {/* //////////////////////////////////////////Looping array into the table????????? */}
 
@@ -256,10 +256,27 @@ class App extends React.Component {
                     <th>Player 1</th>
                     <td>
                       {this.state.scores.map((item, i) => {
-                        return <p>{item}</p>
-                      console.log(console.log[0]);
+                        return <p>{item[0]}</p>
+                      // console.log(console.log[0]);
                       })}
-                      
+                    </td>
+                    <td>
+                      {this.state.scores.map((item, i) => {
+                        return <p>{item[1]}</p>
+                      // console.log(console.log[0]);
+                      })}
+                    </td>
+                    <td>
+                      {this.state.scores.map((item, i) => {
+                        return <p>{item[2]}</p>
+                      // console.log(console.log[0]);
+                      })}
+                    </td>
+                    <td>
+                      {this.state.scores.map((item, i) => {
+                        return <p>{item[3]}</p>
+                      // console.log(console.log[0]);
+                      })}
                     </td>
                   </tr>
 
