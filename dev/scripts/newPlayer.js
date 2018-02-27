@@ -170,7 +170,6 @@ export class NewPlayer extends React.Component{
 
                         {this.state.scores.map((item, i) => {
                             return <td>{item[2]}</td>
-                            console.log();
                         })}
 
                         {this.state.scores.map((item, i) => {
@@ -202,14 +201,9 @@ export class NewPlayer extends React.Component{
                         })}
                     </tr>
                 </tbody>
-            </table>
-            
-    
-               
-                       
+            </table>         
         )
     }
 }
-
 
 export default NewPlayer;

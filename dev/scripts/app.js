@@ -31,7 +31,6 @@ class App extends React.Component {
       score99:''
     }
     
-    
     this.addScore = this.addScore.bind(this);
     this.handleChange = this.handleChange.bind(this);
     // this.createAccount = this.createAccount.bind(this);
@@ -117,7 +116,7 @@ class App extends React.Component {
         <div className="background">
           <div className="wrapper">
             <div className="container">
-            <h1>Tournament Tracker</h1>
+              <h1>Tournament Tracker</h1>
               <div className="scorecard-border">
                 <table className="scorecard">
                   <tbody>
@@ -242,7 +241,6 @@ class App extends React.Component {
                         {this.state.scores.map((item, i) => {
                           return <td>{item[9]}</td>
                         })}
-                        
                     </tr>
             
                     <tr className="holes">
@@ -258,7 +256,6 @@ class App extends React.Component {
                       <td>9</td>
                       <td>Out</td>
                     </tr>
-                 
                   </tbody>
                 </table>
                      <NewPlayer />
@@ -273,6 +270,7 @@ class App extends React.Component {
     }
 }
 
+//////////////////////////beginning of log in render
 {/* <header>
             <nav>
               <a href="" onClick={this.createAccount}>Create Account</a>
