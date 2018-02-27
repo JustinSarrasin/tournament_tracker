@@ -135,7 +135,7 @@ body {
   font-family: 'Open Sans', sans-serif; }
 
 .background {
-  background: url("./../../public/styles/assets/KukuiulaGolfHole14.jpg");
+  background-image: url("./../../public/styles/assets/KukuiulaGolfHole14.jpg");
   width: 100%;
   background-size: cover;
   background-position: center;
