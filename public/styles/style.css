@@ -132,27 +132,25 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   box-sizing: border-box; }
 
 body {
-  font-family: 'Open Sans', sans-serif; }
-
-.test p {
-  background: white; }
-
-.background {
+  font-family: 'Open Sans', sans-serif;
   background-image: url("./../../public/styles/assets/KukuiulaGolfHole14.jpg");
   width: 100%;
   background-size: cover;
   background-position: center;
   text-align: center;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh; }
+
+.test p {
+  background: white; }
 
 .wrapper {
-  height: 100vh;
   margin: 0 auto;
   max-width: 1000px;
   justify-content: center;
   display: flex;
-  flex-direction: column;
-  justify-content: center; }
+  flex-direction: column; }
 
 h1 {
   display: flex;

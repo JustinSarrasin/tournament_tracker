@@ -66,12 +66,19 @@ class Login extends React.Component {
    render() {
       return (
 
-         <div>
-            <button onClick={this.signIn}><i className="fab fa-google"></i>
-
- Sign In With Google</button>
+         <React.Fragment>
+            {this.state.loggedIn ? (
+               <React.Fragment>
+                     <button onClick={this.signOut}>Logout</button>
+               </React.Fragment>
+            ) : (
+                  <React.Fragment>
+                     <button onClick={this.signIn}><i className="fab fa-google"></i>Sign In With Google</button>                              
+                  </React.Fragment>
+               )}
             <button onClick={this.signOut}>Logout</button>
-         </div>
+
+         </React.Fragment>
       )
    }
 }

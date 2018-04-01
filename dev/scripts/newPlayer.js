@@ -34,20 +34,44 @@ export class NewPlayer extends React.Component{
     }
 
     //  gets data from firebase
+   //  componentDidMount() {
+   //       // this.setState({
+   //       //    note: this.props.note
+   //       // })
+
+   //    //   const dbRef = firebase.database().ref.on("/Player2");
+   //    //   firebase.database().ref().on()
+   //      //  gets value of items from firebase
+   //      firebase.database().ref().on('value', (res) => {
+   
+   //          //  returns the scores into an array
+   //          const userData = res.val();
+   //          const dataArray = [];
+   //          console.log(res.val());
+   //          for (let objKey in userData) {
+   //             userData[objKey].key = objKey;
+   //             dataArray.push(userData[objKey])
+   //              //  returns an array of objects
+   //              console.log(dataArray);
+   //              }
+   //          this.setState({
+   //             scores: dataArray
+   //          })
+            
+            
+   //          // console.log(scoresArray);
+   //      });
+   //  }
     componentDidMount() {
          // this.setState({
          //    note: this.props.note
          // })
-
-        const dbRef = firebase.database().ref("/Player2");
-
-        //  gets value of items from firebase
-        dbRef.on('value', (fireBaseData) => {
+        firebase.database().ref().on('value', (fireBaseData) =>{
    
             //  returns the scores into an array
             const scoresData = fireBaseData.val();
             let scoresArray = [];
-
+            console.log(fireBaseData.val());
             for (let scoreKey in scoresData) {
 
                 //  returns an array of objects
@@ -74,24 +98,24 @@ export class NewPlayer extends React.Component{
     addScore(e) {
         e.preventDefault();
         //grabs the users score input
-       const userScore1 = {
-          score1: this.state.score1,
-          score2: this.state.score2,
-          score3: this.state.score3,
-          score4: this.state.score4,
-          score5: this.state.score5,
-          score6: this.state.score6,
-          score7: this.state.score7,
-          score8: this.state.score8,
-          score9: this.state.score9,
-          score99: this.state.score99
-         }
+      //  const userScore1 = {
+      //     score1: this.state.score1,
+      //     score2: this.state.score2,
+      //     score3: this.state.score3,
+      //     score4: this.state.score4,
+      //     score5: this.state.score5,
+      //     score6: this.state.score6,
+      //     score7: this.state.score7,
+      //     score8: this.state.score8,
+      //     score9: this.state.score9,
+      //     score99: this.state.score99
+      //    }
       
         //pushes item to main firebase database
         // pushes values for player 2
-        const dbRef = firebase.database().ref('/Player2');
+        const dbRef = firebase.database().ref();
         dbRef.push(userScore1);
-         console.log(userScore1);
+         // console.log(userScore1);
        this.setState({
           score1: '',
           score2: '',
@@ -107,9 +131,11 @@ export class NewPlayer extends React.Component{
          
        });
     }
-   removeScore(bookId) {
-      const dbRef = firebase.database().ref(bookId);
-      dbRef.remove();
+    
+   removeScore(scoreID) {
+      // const dbRef = firebase.database().ref(scoreID);
+      // dbRef.remove();
+      console.log(scoreID);
    }
    // removeScore(e, option) {
    //    e.preventDefault();
@@ -263,12 +289,12 @@ export class NewPlayer extends React.Component{
                  </tr>
 
                     
-                           {this.state.scores.map((item, i, book) => {
-                              console.log(this.state);
+                           {this.state.scores.map((item, i, score) => {
+                              console.log(this.state.score);
                               return (
                                  <tr className="player">
-                                    <th className="inputScore"><button onClick={() => this.removeScore(book.key)}>x</button></th>
-                                    <td>{item[0]}</td>
+                                    <th className="inputScore"><button onClick={() => this.removeScore(score.key)}>x</button></th>
+                                    <td>{}</td>
                                     <td>{item[1]}</td>
                                     <td>{item[2]}</td>
                                     <td>{item[3]}</td>

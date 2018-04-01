@@ -4,6 +4,16 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 body {
     font-family: 'Open Sans', sans-serif;
+    background-image: url("./../../public/styles/assets/KukuiulaGolfHole14.jpg");
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    
+   //  position: fixed;
 }
 
 .test p {
@@ -11,22 +21,26 @@ body {
 }
 
 .background{
-    background-image: url("./../../public/styles/assets/KukuiulaGolfHole14.jpg");
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    text-align: center;
-    background-repeat: no-repeat;
+   //  background-image: url("./../../public/styles/assets/KukuiulaGolfHole14.jpg");
+   //  width: 100%;
+   // //  background-size: cover;
+   //  background-position: center;
+   //  text-align: center;
+   //  background-repeat: no-repeat;
+   //  background-attachment: fixed;
+   //  height: 100vh;
+
+    
+   //  position: fixed;
 }
 
 .wrapper {
-    height: 100vh;
+   //  height: 100vh;
     margin: 0 auto;
     max-width: 1000px;
     justify-content: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 h1{
