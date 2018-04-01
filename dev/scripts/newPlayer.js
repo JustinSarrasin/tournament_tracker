@@ -400,7 +400,7 @@ export class NewPlayer extends React.Component{
                                  // </tr>
                                  // <Results data={item} key={item.key}/>
                               )
-                           })}
+                           }).reverse()}
                         
         
                 </tbody>
