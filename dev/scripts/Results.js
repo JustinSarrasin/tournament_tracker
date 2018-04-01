@@ -5,18 +5,18 @@ const Results = (props) => {
       
      
             <tr className="player">
-         <th className="inputScore">      <button onClick={() => props.removeScore(props.item.key)}>x</button>
+         <th className="inputScore"><button onClick={() => props.removeScore(props.item.key)}>x</button>
 </th>
-               <td>{props.item.score1}</td>
-               <td>{props.item.score2}</td>
-               <td>{props.item.score3}</td>
-               <td>{props.item.score4}</td>
-               <td>{props.item.score5}</td>
-               <td>{props.item.score6}</td>
-               <td>{props.item.score7}</td>
-               <td>{props.item.score8}</td>
-               <td>{props.item.score9}</td>
-               <td>{props.item.score99}</td>
+               <td className="writing">{props.item.score1}</td>
+               <td className="writing">{props.item.score2}</td>
+               <td className="writing">{props.item.score3}</td>
+               <td className="writing">{props.item.score4}</td>
+               <td className="writing">{props.item.score5}</td>
+               <td className="writing">{props.item.score6}</td>
+               <td className="writing">{props.item.score7}</td>
+               <td className="writing">{props.item.score8}</td>
+               <td className="writing">{props.item.score9}</td>
+               <td className="writing">{props.item.score99}</td>
                {/* <td>{item[0]}</td>
                <td>{item[1]}</td>
                <td>{item[2]}</td>

@@ -142,9 +142,6 @@ body {
   background-attachment: fixed;
   height: 100vh; }
 
-.test p {
-  background: white; }
-
 .wrapper {
   margin: 0 auto;
   max-width: 1000px;
@@ -216,9 +213,27 @@ input {
 .holes {
   background: rgba(138, 138, 138, 0.9); }
 
-button {
+.logins button {
   color: white;
-  background-color: rgba(0, 47, 255, 0.6); }
+  background-color: rgba(0, 47, 255, 0.6);
+  padding: 5px 10px;
+  font-size: 18px; }
+
+.logins {
+  margin-top: 20px;
+  justify-content: flex-end; }
+
+.fa-google i {
+  text-shadow: 100px 1px 1px black; }
+
+.googleLogin p {
+  display: inline-block;
+  margin: 0;
+  padding: 0 10px;
+  color: white;
+  text-transform: capitalize;
+  font-size: 18px;
+  text-shadow: 1px 1px 1px black; }
 
 @media (max-width: 1000px) {
   h1 {

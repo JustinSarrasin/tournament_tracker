@@ -16,9 +16,9 @@ body {
    //  position: fixed;
 }
 
-.test p {
-   background: white;
-}
+// .test p {
+//    background: white;
+// }
 
 // .background{
 //    //  background-image: url("./../../public/styles/assets/KukuiulaGolfHole14.jpg");
@@ -106,6 +106,8 @@ td{
     color: rgb(66, 66, 66);    
 }
 
+
+
 input {
     background: rgba(255, 255, 255 ,0.95);
     color: rgb(44, 44, 44);
@@ -122,9 +124,32 @@ input {
     background: rgba(138, 138, 138, 0.9);
 }
 
-button {
+.logins button {
    color: white;
    background-color: rgba(0, 47, 255, 0.6);
+   padding: 5px 10px;
+   font-size: 18px;
+   // text-shadow: 1px 1px 1px black; 
+}
+
+.logins {
+   margin-top: 20px;
+   justify-content: flex-end;
+}
+
+.fa-google i {
+   text-shadow: 100px 1px 1px black; 
+   
+}
+
+.googleLogin p {
+   display: inline-block;
+   margin: 0;
+   padding: 0 10px;
+   color: white;
+   text-transform: capitalize;
+   font-size: 18px;
+   text-shadow: 1px 1px 1px black;
 }
 
 @media (max-width: 1000px){

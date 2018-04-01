@@ -74,7 +74,7 @@ class Login extends React.Component {
 
    render() {
       return (
-         <div>
+         <div className="logins">
             {
                        (() => {
                   if (this.state.loggedIn) {
@@ -84,7 +84,10 @@ class Login extends React.Component {
                   }
                   else {
                      return (
-                        <button onClick={this.signIn}><span><i className="fab fa-google"></i></span>Sign In With Google</button>
+                        <div className="googleLogin">
+                           <p>Log in to track your scores this season</p>
+                              <button onClick={this.signIn}><span><i className="fab fa-google"></i></span> Sign In With Google</button>
+                        </div>
                      )
                   }
                })()
