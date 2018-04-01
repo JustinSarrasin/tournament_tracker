@@ -17,7 +17,7 @@ export class NewPlayer extends React.Component{
             score9: '',
             score99: '',
             editing: false,
-            note: {}
+            userInput: ''
         }
 
         this.addScore = this.addScore.bind(this);
@@ -27,9 +27,10 @@ export class NewPlayer extends React.Component{
         // this.createUser = this.createUser.bind(this);
     }
 
-    handleChange(e) {
+    handleChange(event) {
         this.setState({
-            [e.target.id]: e.target.value
+           userInput:event.target.value
+            // [e.target.id]: e.target.value
         });
     }
 
@@ -66,7 +67,7 @@ export class NewPlayer extends React.Component{
             this.setState({
                 scores: scoresArray,
             })
-            // console.log(scoresArray);
+            console.log(scoresArray);
         })
     }
 
@@ -91,32 +92,30 @@ export class NewPlayer extends React.Component{
         // pushes values for player 2
         const dbRef = firebase.database().ref('/Player2');
         dbRef.push(userScore1);
-         console.log(userScore1);
-       this.setState({
-          name: ''
+         // console.log(userScore1);
+      //  this.setState({
+      //     name: ''
          
-       });
+      //  });
     }
-   removeScore(bookId) {
-      const dbRef = firebase.database().ref(bookId);
-      dbRef.remove();
-   }
-   // removeScore(e, option) {
-   //    e.preventDefault();
-   //    // this.setState(() => {
-   //    //    return {
-   //    //       options: []
-   //    //    };
-   //    // });
-   //    const dbRef = firebase.database().ref(option);
-   //    dbRef.remove(option);
-   //    // console.log(optionId);
-   //    // const dbRef = firebase.database().ref(optionID);
-   //    // dbRef.remove(optionID);
-   //    // console.log(option);
-   //    // console.log(this)
+   removeScore(scoreID) {
+      // e.preventDefault();
+      // this.setState(() => {
+      //    return {
+      //       options: []
+      //    };
+      // });
+      console.log(this);
+      // const dbRef = firebase.database().ref(option);
+      console.log('clicked');
+      // dbRef.remove(key)
+      // console.log(optionId);
+      const dbRef = firebase.database().ref();
+      dbRef.remove(scoreID);
+      // console.log(option);
+      // console.log(this)
 
-   // }
+   }
 
    //  addScore2(e) {
    //     e.preventDefault();
@@ -157,20 +156,21 @@ export class NewPlayer extends React.Component{
     render() {
         return (
             <table className="scorecard">
-                <tbody>         
-                 <tr className="yards">
-                    <th>Yards</th>
-                    <td>315</td>
-                    <td>471</td>
-                    <td>449</td>
-                    <td>171</td>
-                    <td>562</td>
-                    <td>205</td>
-                    <td>551</td>
-                    <td>180</td>
-                    <td>384</td>
-                    <td>3288</td>
-                 </tr>
+                <tbody>      
+        
+                    <tr className="yards">
+                       <th>Yards</th>
+                       <td>315</td>
+                       <td>471</td>
+                       <td>449</td>
+                       <td>171</td>
+                       <td>562</td>
+                       <td>205</td>
+                       <td>551</td>
+                       <td>180</td>
+                       <td>384</td>
+                       <td>3288</td>
+                    </tr>
                  <tr className="holes">
                     <th>Hole</th>
                     <td>1</td>
@@ -185,11 +185,10 @@ export class NewPlayer extends React.Component{
                     <td>Out</td>
                  </tr>   
                     <tr className="player player1">
-                    
                         <th className="inputScore">Input Score</th>
                         <td>
                             <form onSubmit={this.addScore}>
-                                <input className="scoreInput" id="score1" name="score" onChange={this.handleChange} value={this.state.score1} type="text" />
+                                <input className="scoreInput" id="score1" name="score" onChange={this.handleChange} value={this.state.score} type="text" />
                             </form>
                         </td>
                         <td>
@@ -254,10 +253,10 @@ export class NewPlayer extends React.Component{
 
                     
                            {this.state.scores.map((item, i) => {
-                              console.log(this.state);
+                              // console.log(this.state);
                               return (
                                  <tr className="player">
-                                    <th className="inputScore"><button onClick={() => this.removeBook(book.id)}>x</button></th>
+                                    <th className="inputScore"><button onClick={() => this.removeScore(scoreID)}>x</button></th>
                                     <td>{item[0]}</td>
                                     <td>{item[1]}</td>
                                     <td>{item[2]}</td>

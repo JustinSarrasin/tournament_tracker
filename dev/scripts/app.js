@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import NewPlayer from './newPlayer.js';
+import PlayerTest from './PlayerTest.js';
+import NewPlayer3 from './newPlayer3.js';
+import Test from './Test.js';
+import Login from './Login.js';
 
 // Initialize Firebase
 const config = {
@@ -71,6 +75,7 @@ class App extends React.Component {
         this.setState({
           scores: scoresArray,
         })
+        console.log(scoresArray);
       })
     }
 
@@ -96,60 +101,60 @@ class App extends React.Component {
     }   
 
 
-    // createAccount(e){
-    //   e.preventDefault();
-    // }
+    createAccount(e){
+      e.preventDefault();
+    }
     
-    // createUser(e){
-    //   e.preventDefault();
-    //   const password = this.newPassword.value;
-    //   const confirm = this.confirmPassword.value;
-    //   if(password === confirm){
+    createUser(e){
+      e.preventDefault();
+      const password = this.newPassword.value;
+      const confirm = this.confirmPassword.value;
+      if(password === confirm){
 
-    //   }else {
-    //     alert("Check Password")
-    //   }
-    // }
+      }else {
+        alert("Check Password")
+      }
+    }
 
     render() {
       return (
         <div className="background">
           <div className="wrapper">
             <div className="container">
-              <h1>Tournament Tracker</h1>
+            <Login />
+                  {/* <header>
+                     <nav>
+                        <a href="" onClick={this.createAccount}>Create Account</a>
+                        <a href="" onClick={this.showLogIn}>Log In</a>
+                        <a href="" onClick={this.logout}>Logout</a>
+                     </nav>
+                     <div className="signUp" ref={ref => this.signUp = ref}>
+                        <form action="" onSubmit={this.createAccount}>
+                           <div>
+                              <label htmlFor="newEmail">Email</label>
+                              <input type="text" name="newEmail" ref={ref => this.newEmail = ref} />
+                           </div>
+                           <div>
+                              <label htmlFor="newPassword">Password</label>
+                              <input type="text" name="newPassword" ref={ref => this.newPassword = ref} />
+                           </div>
+                           <div>
+                              <label htmlFor="confirmPassword">Confirm Password</label>
+                              <input type="text" name="confirmPassword" ref={ref => this.confirmPassword = ref} />
+                           </div>
+                        </form>
+                     </div>
+                  </header> */}
+              <h1>Round Tracker</h1>
               <div className="scorecard-border">
                 <table className="scorecard">
                   <tbody>
-                    <tr className="yards">
-                      <th>Yards</th>
-                      <td>315</td>
-                      <td>471</td>
-                      <td>449</td>
-                      <td>171</td>
-                      <td>562</td>
-                      <td>205</td>
-                      <td>551</td>
-                      <td>180</td>
-                      <td>384</td>
-                      <td>3288</td>
-                    </tr>
-                    <tr className="par">
-                      <th>Par</th>
-                      <td>4</td>
-                      <td>5</td>
-                      <td>4</td>
-                      <td>3</td>
-                      <td>5</td>
-                      <td>3</td>
-                      <td>5</td>
-                      <td>3</td>
-                      <td>4</td>
-                      <td>36</td>
-                    </tr>
-                    <tr className="player player1">
+                    
+                    
+                    {/* <tr className="player player1">
                       <th className="inputScore">Input Score</th>
                       <td>
-                        <form onSubmit={this.addScore}>
+                        <form diabled={this.state.score1 !== ''} onSubmit={this.addScore}>
                           <input className="scoreInput" id="score1" name="score" onChange={this.handleChange} value={this.state.score1} type="text" />
                         </form>
                       </td>
@@ -238,31 +243,25 @@ class App extends React.Component {
                         {this.state.scores.map((item, i) => {
                           return <td>{item[8]}</td>
                         })}
-                        {this.state.scores.map((item, i) => {
-                          return <td>{item[9]}</td>
-                        })}
-                    </tr>
+
+                        {/* <td>{this.state.scores.reduce(item, i)}</td> */}
+
+                        {/* {this.state.scores.reduce(function (previousValue, currentValue) {return Number(previousValue) + Number(currentValue);
+                              }, 0)
+                        })} */}
+                    {/* </tr> */} 
             
-                    <tr className="holes">
-                      <th>Hole</th>
-                      <td>1</td>
-                      <td>2</td>
-                      <td>3</td>
-                      <td>4</td>
-                      <td>5</td>
-                      <td>6</td>
-                      <td>7</td>
-                      <td>8</td>
-                      <td>9</td>
-                      <td>Out</td>
-                    </tr>
+                    
                   </tbody>
                 </table>
                      <NewPlayer />
+                     {/* <NewPlayer3 /> */}
+                     {/* <PlayerTest />
+                     <Test /> */}
                 <div>
               </div>
               </div>
-                <h3>HackerYou Spring Invitational</h3>
+                {/* <h3>HackerYou Spring Invitational</h3> */}
             </div>
           </div>
         </div>
@@ -271,28 +270,6 @@ class App extends React.Component {
 }
 
 //////////////////////////beginning of log in render
-{/* <header>
-            <nav>
-              <a href="" onClick={this.createAccount}>Create Account</a>
-              <a href="" onClick={this.showLogIn}>Log In</a>
-              <a href="" onClick={this.logout}>Logout</a>
-            </nav>
-            <div className="signUp" ref={ref => this.signUp = ref}>
-              <form action="" onSubmit={this.createAccount}>
-                <div>
-                  <label htmlFor="newEmail">Email</label>
-                  <input type="text" name="newEmail" ref={ref => this.newEmail = ref}/>
-                </div>
-                <div>
-                  <label htmlFor="newPassword">Password</label>
-                  <input type="text" name="newPassword" ref={ref => this.newPassword =ref}/>
-                </div>
-                <div>
-                  <label htmlFor="confirmPassword">Confirm Password</label>
-                  <input type="text" name="confirmPassword" ref={ref => this.confirmPassword =ref}/>
-                </div>
-              </form>
-            </div>
-          </header> */}
+         
 
 ReactDOM.render(<App />, document.getElementById('app'));

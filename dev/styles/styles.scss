@@ -6,6 +6,10 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+.test p {
+   background: white;
+}
+
 .background{
     background-image: url("./../../public/styles/assets/KukuiulaGolfHole14.jpg");
     width: 100%;
@@ -101,7 +105,12 @@ input {
 }
 
 .holes {
-    background: rgb(138, 138, 138);
+    background: rgba(138, 138, 138, 0.9);
+}
+
+button {
+   color: white;
+   background-color: rgba(0, 47, 255, 0.6);
 }
 
 @media (max-width: 1000px){
