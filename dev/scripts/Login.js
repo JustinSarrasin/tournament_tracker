@@ -31,11 +31,12 @@ class Login extends React.Component {
       provider.setCustomParameters({
 
          prompt: "select_account"
-      })
+      });
 
       //in this pop up, we are passing the provider
       //the pop up will accept a promise
-      //go into authentication on firebase, and enable the provider you plan on using firebase
+      //go into authentication on firebase, and enable the provider you plan on using 
+      firebase
 
          .auth()
          .signInWithPopup(provider)

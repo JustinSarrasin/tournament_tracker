@@ -42,25 +42,37 @@ export class NewPlayer extends React.Component{
       //   const dbRef = firebase.database().ref.on("/Player2");
       //   firebase.database().ref().on()
         //  gets value of items from firebase
-        firebase.database().ref().on('value', (res) => {
-   
-            //  returns the scores into an array
-            const userData = res.val();
-            const dataArray = [];
-            console.log(res.val());
-            for (let objKey in userData) {
-               userData[objKey].key = objKey;
-               dataArray.push(userData[objKey])
-                //  returns an array of objects
-                console.log(dataArray);
-                }
+        firebase.auth().onAuthStateChanged((user) => {
+         if(user){
+            firebase.database().ref(`users/${user.uid}/scores`).on('value', (res) => {
+               //  returns the scores into an array
+               const userData = res.val();
+               const dataArray = [];
+               console.log(res.val());
+               for (let objKey in userData) {
+                  userData[objKey].key = objKey;
+                  dataArray.push(userData[objKey])
+                   //  returns an array of objects
+                   console.log(dataArray);
+                   }
+               this.setState({
+                  scores: dataArray,
+                  loggedIn: true
+               })
+       
+                
+                
+                // console.log(scoresArray);
+            });
+
+         }
+         else {
             this.setState({
-               scores: dataArray
-            })
-            
-            
-            // console.log(scoresArray);
-        });
+               loggedIn: false,
+               scores: []
+            });
+         }
+        })
     }
    //  componentDidMount() {
    //       // this.setState({
@@ -116,7 +128,8 @@ export class NewPlayer extends React.Component{
       
         //pushes item to main firebase database
         // pushes values for player 2
-        const dbRef = firebase.database().ref();
+        const userId = firebase.auth().currentUser.uid;
+        const dbRef = firebase.database().ref(`users/${userId}/scores`);
         dbRef.push(userScore);
          // console.log(userScore1);
        this.setState({
