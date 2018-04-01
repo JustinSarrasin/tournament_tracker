@@ -93,7 +93,17 @@ export class NewPlayer extends React.Component{
         dbRef.push(userScore1);
          console.log(userScore1);
        this.setState({
-          name: ''
+          score1: '',
+          score2: '',
+          score3: '',
+          score4: '',
+          score5: '',
+          score6: '',
+          score7: '',
+          score8: '',
+          score9: '',
+          score99: '',
+         //  name: ''
          
        });
     }
@@ -253,11 +263,11 @@ export class NewPlayer extends React.Component{
                  </tr>
 
                     
-                           {this.state.scores.map((item, i) => {
+                           {this.state.scores.map((item, i, book) => {
                               console.log(this.state);
                               return (
                                  <tr className="player">
-                                    <th className="inputScore"><button onClick={() => this.removeBook(book.id)}>x</button></th>
+                                    <th className="inputScore"><button onClick={() => this.removeScore(book.key)}>x</button></th>
                                     <td>{item[0]}</td>
                                     <td>{item[1]}</td>
                                     <td>{item[2]}</td>
