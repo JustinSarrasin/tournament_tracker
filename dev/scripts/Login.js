@@ -7,6 +7,8 @@ class Login extends React.Component {
          loggedIn: false,
          user: {},
       };
+      this.signIn = this.signIn.bind(this);
+      this.signOut = this.signOut.bind(this);
 
    }
    componentDidMount() {
@@ -43,10 +45,17 @@ class Login extends React.Component {
          .then(user => {
             // console.log(user);
          });
+
+      this.setState({
+         loggedIn: true
+      })
    }
 
    signOut() {
       firebase.auth().signOut();
+      this.setState({
+         loggedIn: false
+      })
    }
 
    // componentDidMount(props) {
@@ -65,22 +74,53 @@ class Login extends React.Component {
 
    render() {
       return (
+         <div>
+            {
+                       (() => {
+                  if (this.state.loggedIn) {
+                     return (
+                        <button onClick={this.signOut}>Logout</button>
+                     )
+                  }
+                  else {
+                     return (
+                        <button onClick={this.signIn}><span><i className="fab fa-google"></i></span>Sign In With Google</button>
+                     )
+                  }
+               })()
+                    }
+         </div>
 
-         <React.Fragment>
-            {this.state.loggedIn ? (
-               <React.Fragment>
-                     <button onClick={this.signOut}>Logout</button>
-               </React.Fragment>
-            ) : (
-                  <React.Fragment>
-                     <button onClick={this.signIn}><i className="fab fa-google"></i>Sign In With Google</button>                              
-                  </React.Fragment>
-               )}
-            <button onClick={this.signOut}>Logout</button>
+         // <span>
+         //    {
+         //               (() => {
+         //          if (this.state.loggedIn) {
+         //             return (
+         //                <button onClick={this.signOut}>Logout</button>
+         //             )
+         //          }
+         //          else {
+         //             <button onClick={this.signIn}><i className="fab fa-google"></i>Sign In With Google</button>
+         //          }
+         //       })()
+         //            }
+         // </span>
 
-         </React.Fragment>
-      )
-   }
+      //    <React.Fragment>
+      //       {this.state.loggedIn ? (
+      //          <React.Fragment>
+      //                <button onClick={this.signOut}>Logout</button>
+      //          </React.Fragment>
+      //       ) : (
+      //             <React.Fragment>
+      //                <button onClick={this.signIn}><i className="fab fa-google"></i>Sign In With Google</button>                              
+      //             </React.Fragment>
+      //          )}
+      //       <button onClick={this.signOut}>Logout</button>
+
+      //    </React.Fragment>
+      // )
+                  )}        
 }
 
 export default Login;

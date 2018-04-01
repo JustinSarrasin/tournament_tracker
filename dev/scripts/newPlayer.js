@@ -17,12 +17,15 @@ export class NewPlayer extends React.Component{
             score9: '',
             score99: '',
             editing: false,
+           loggedIn: false,
             note: {}
         }
 
         this.addScore = this.addScore.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.removeScore = this.removeScore.bind(this);
+      //   this.signIn = this.signIn.bind(this);
+      //   this.signOut = this.signOut.bind(this);
         // this.createAccount = this.createAccount.bind(this);
         // this.createUser = this.createUser.bind(this);
     }
@@ -65,15 +68,62 @@ export class NewPlayer extends React.Component{
                 // console.log(scoresArray);
             });
 
+            // const provider = new firebase.auth.GoogleAuthProvider();
+
+            // firebase.auth().signInWithPopup(provider).then(function (result) {
+            //    // This gives you a Google Access Token. You can use it to access the Google API.
+            //    const token = result.credential.accessToken;
+
+            //    // Get the signed-in user info.
+            //    const user = result.user;
+            //    // ...
+            // }).catch(function (error) {
+            //    // Error handling goes in here.
+            //    console.log(error)
+            // });
+         
+
          }
          else {
             this.setState({
-               loggedIn: false,
+               // loggedIn: false,
                scores: []
             });
          }
         })
     }
+
+   // signIn() {
+   //    const provider = new firebase.auth.GoogleAuthProvider();
+
+   //    //prompts user to select their acconut
+   //    provider.setCustomParameters({
+
+   //       prompt: "select_account"
+   //    });
+
+   //    //in this pop up, we are passing the provider
+   //    //the pop up will accept a promise
+   //    //go into authentication on firebase, and enable the provider you plan on using 
+   //    firebase
+
+   //       .auth()
+   //       .signInWithPopup(provider)
+   //       .then(user => {
+   //          // console.log(user);
+   //       });
+
+   //    this.setState({
+   //       loggedIn: true
+   //    })
+   // }
+
+   // signOut() {
+   //    firebase.auth().signOut();
+   //    this.setState({
+   //       loggedIn: false
+   //    })
+   // }
    //  componentDidMount() {
    //       // this.setState({
    //       //    note: this.props.note
@@ -133,7 +183,7 @@ export class NewPlayer extends React.Component{
         dbRef.push(userScore);
          // console.log(userScore1);
        this.setState({
-          score1: '',
+          score1.value: '9',
           score2: '',
           score3: '',
           score4: '',
@@ -207,6 +257,38 @@ export class NewPlayer extends React.Component{
 
     render() {
         return (
+           <div>
+              <div>
+                 {/* {
+                    (() => {
+                       if(this.state.loggedIn){
+                          return(
+                             <button onClick={this.signOut}>Logout</button>
+                          )
+                       }
+                       else {
+                          return(
+                             <button onClick={this.signIn}><span><i className="fab fa-google"></i></span>Sign In With Google</button>
+                          )
+                       }
+                    })()
+                 } */}
+
+              {/* <React.Fragment>
+                 {this.state.loggedIn ? (
+                    <React.Fragment>
+                       <button onClick={this.signOut}>Logout</button>
+                    </React.Fragment>
+                 ) : (
+                       <React.Fragment>
+                          <button onClick={this.signIn}><i className="fab fa-google"></i>Sign In With Google</button>
+                       </React.Fragment>
+                    )}
+                 <button onClick={this.signOut}>Logout</button>
+
+              </React.Fragment> */}
+              </div>
+          
             <table className="scorecard">
                 <tbody>         
                  <tr className="yards">
@@ -417,7 +499,8 @@ export class NewPlayer extends React.Component{
                         
         
                 </tbody>
-            </table>         
+            </table>     
+           </div>    
         )
     }
 }
