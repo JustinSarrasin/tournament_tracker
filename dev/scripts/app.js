@@ -24,9 +24,9 @@ class App extends React.Component {
         <div className="background">
           <div className="wrapper">
             <div className="container">
-            <Login />
                   
               <h1 className>Round Tracker</h1>
+                  <Login />
               <div className="scorecard-border">
                   <NewPlayer />
               </div>

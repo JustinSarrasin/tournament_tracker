@@ -12,30 +12,9 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100vh;
-    
-   //  position: fixed;
 }
 
-// .test p {
-//    background: white;
-// }
-
-// .background{
-//    //  background-image: url("./../../public/styles/assets/KukuiulaGolfHole14.jpg");
-//    //  width: 100%;
-//    // //  background-size: cover;
-//    //  background-position: center;
-//    //  text-align: center;
-//    //  background-repeat: no-repeat;
-//    //  background-attachment: fixed;
-//    //  height: 100vh;
-
-    
-//    //  position: fixed;
-// }
-
 .wrapper {
-   //  height: 100vh;
     margin: 0 auto;
     max-width: 1000px;
     justify-content: center;
@@ -51,8 +30,8 @@ h1{
     font-size: 90px;
     color: white;
     text-shadow: 1px 2px 8px black;
+    margin: 30px 0;
 }
-
 
 h3{
     font-size: 50px;
@@ -77,6 +56,7 @@ h3{
 .scorecard-border {
     border: 3px solid black;
     border-radius: 3px;
+    margin-bottom: 25px;
 }
 
 table, td, th {
@@ -106,8 +86,6 @@ td{
     color: rgb(66, 66, 66);    
 }
 
-
-
 input {
     background: rgba(255, 255, 255 ,0.95);
     color: rgb(44, 44, 44);
@@ -124,12 +102,38 @@ input {
     background: rgba(138, 138, 138, 0.9);
 }
 
-.logins button {
+.total {
+   background: yellow;
+   font-weight: bold;
+}
+button {
    color: white;
+}
+
+.submitButton {
+   background-color: rgba(0, 0, 0, 0.726);
+   width: 100%;
+   padding: 6px 10px;
+   &:hover {
+      background-color: rgb(0, 0, 0);
+   }
+}
+
+.delete {
+   background-color: rgba(255, 0, 0, 0.788);
+   &:hover {
+      background-color: rgb(255, 0, 0);
+   }
+}
+
+.logins button {
    background-color: rgba(0, 47, 255, 0.6);
    padding: 5px 10px;
    font-size: 18px;
-   // text-shadow: 1px 1px 1px black; 
+   margin-bottom: 15px;
+   &:hover{
+      background-color: rgb(1, 38, 202);
+   }
 }
 
 .logins {
@@ -143,8 +147,7 @@ input {
 }
 
 .googleLogin p {
-   display: inline-block;
-   margin: 0;
+   margin: 0 0 15px;
    padding: 0 10px;
    color: white;
    text-transform: capitalize;
@@ -185,10 +188,20 @@ input {
     }
 }
 
+@media(max-width: 500px){
+   h1{
+      font-size: 30px;
+      margin: 10px 0 -10px;
+   }
+}
+
 @media (max-width: 465px){
     td {
         width: 15px;
     }
+    p {
+      font-size: 10px;
+   }
     .scorecard {
         font-size: 9px;
     }

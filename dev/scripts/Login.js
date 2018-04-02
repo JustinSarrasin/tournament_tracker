@@ -39,7 +39,6 @@ class Login extends React.Component {
       //the pop up will accept a promise
       //go into authentication on firebase, and enable the provider you plan on using 
       firebase
-
          .auth()
          .signInWithPopup(provider)
          .then(user => {
@@ -58,72 +57,32 @@ class Login extends React.Component {
       })
    }
 
-   // componentDidMount(props) {
-   //    //this will check for a user object which we will call res
-   //    firebase.auth().onAuthStateChanged(res => {
-   //       // console.log(res);
-   //       this.props.loggedInCheck(res)
-   //    });
-   // }
-   // componentWillReceiveProps(props) {
-   //    this.setState({
-   //       loggedIn: props.loggedIn,
-   //       user: props.user
-   //    })
-   // }
-
    render() {
       return (
          <div className="logins">
             {
-                       (() => {
-                  if (this.state.loggedIn) {
-                     return (
-                        <button onClick={this.signOut}>Logout</button>
-                     )
-                  }
-                  else {
-                     return (
-                        <div className="googleLogin">
-                           <p>Log in to track your scores this season</p>
-                              <button onClick={this.signIn}><span><i className="fab fa-google"></i></span> Sign In With Google</button>
-                        </div>
-                     )
-                  }
-               })()
-                    }
+               (() => {
+               if (this.state.loggedIn) {
+                  return (
+                     <div className="googleLogin">
+                        <p>Fill out the scores, then hit enter or submit to track your season</p>
+                        <button onClick={this.signOut}>Log Out</button>
+                     </div>
+                  )
+               }
+               else {
+                  return (
+                     <div className="googleLogin">
+                        <p>Log in to track your scores this season</p>
+                        <button onClick={this.signIn}><span><i className="fab fa-google"></i></span> Sign In With Google</button>
+                     </div>
+                  )
+               }
+            })()
+         }
          </div>
 
-         // <span>
-         //    {
-         //               (() => {
-         //          if (this.state.loggedIn) {
-         //             return (
-         //                <button onClick={this.signOut}>Logout</button>
-         //             )
-         //          }
-         //          else {
-         //             <button onClick={this.signIn}><i className="fab fa-google"></i>Sign In With Google</button>
-         //          }
-         //       })()
-         //            }
-         // </span>
-
-      //    <React.Fragment>
-      //       {this.state.loggedIn ? (
-      //          <React.Fragment>
-      //                <button onClick={this.signOut}>Logout</button>
-      //          </React.Fragment>
-      //       ) : (
-      //             <React.Fragment>
-      //                <button onClick={this.signIn}><i className="fab fa-google"></i>Sign In With Google</button>                              
-      //             </React.Fragment>
-      //          )}
-      //       <button onClick={this.signOut}>Logout</button>
-
-      //    </React.Fragment>
-      // )
-                  )}        
+   )}        
 }
 
 export default Login;

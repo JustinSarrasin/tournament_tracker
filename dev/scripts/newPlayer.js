@@ -16,16 +16,12 @@ export class NewPlayer extends React.Component{
             score8: '',
             score9: '',
             score99: '',
-            editing: false,
             loggedIn: false,
-            note: {}
         }
 
         this.addScore = this.addScore.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.removeScore = this.removeScore.bind(this);
-        // this.createAccount = this.createAccount.bind(this);
-        // this.createUser = this.createUser.bind(this);
     }
 
     handleChange(e) {
@@ -36,13 +32,6 @@ export class NewPlayer extends React.Component{
 
     //  gets data from firebase
     componentDidMount() {
-         // this.setState({
-         //    note: this.props.note
-         // })
-
-      //   const dbRef = firebase.database().ref.on("/Player2");
-      //   firebase.database().ref().on()
-        //  gets value of items from firebase
         firebase.auth().onAuthStateChanged((user) => {
          if(user){
             firebase.database().ref(`users/${user.uid}/scores`).on('value', (res) => {
@@ -60,12 +49,7 @@ export class NewPlayer extends React.Component{
                   scores: dataArray,
                   loggedIn: true
                })
-       
-                
-                
-                // console.log(scoresArray);
             });
-
          }
          else {
             this.setState({
@@ -73,8 +57,8 @@ export class NewPlayer extends React.Component{
                scores: []
             });
          }
-        })
-    }
+      })
+   }
   
 
     //adding score to firebase
@@ -92,9 +76,6 @@ export class NewPlayer extends React.Component{
           score8: this.score8.value,
           score9: this.score9.value,
           score99: this.score99.value,
-         
-          
-
          }
       
         //pushes item to main firebase database
@@ -103,81 +84,26 @@ export class NewPlayer extends React.Component{
         const dbRef = firebase.database().ref(`users/${userId}/scores`);
         dbRef.push(userScore);
          // console.log(userScore1);
-       this.setState({
-          score1: '',
-          score2: '',
-          score3: '',
-          score4: '',
-          score5: '',
-          score6: '',
-          score7: '',
-          score8: '',
-          score9: '',
-          score99: '',
 
-       });
+         this.score1.value = '',
+         this.score2.value = '',
+         this.score3.value = '',
+         this.score4.value = '',
+         this.score5.value = '',
+         this.score6.value = '',
+         this.score7.value = '',
+         this.score8.value = '',
+         this.score9.value = '',
+         this.score99.value = ''      
     }
     
    removeScore(scoreID) {
-      // let removeID = score.key
       const userId = firebase.auth().currentUser.uid;
       const dbRef = firebase.database().ref(`users/${userId}/scores/${scoreID}`);
       dbRef.remove();
       console.log(scoreID)
    }
-   // removeScore(e, option) {
-   //    e.preventDefault();
-   //    // this.setState(() => {
-   //    //    return {
-   //    //       options: []
-   //    //    };
-   //    // });
-   //    const dbRef = firebase.database().ref(option);
-   //    dbRef.remove(option);
-   //    // console.log(optionId);
-   //    // const dbRef = firebase.database().ref(optionID);
-   //    // dbRef.remove(optionID);
-   //    // console.log(option);
-   //    // console.log(this)
-
-   // }
-
-   //  addScore2(e) {
-   //     e.preventDefault();
-   //     const userScore2 = {
-   //        score2: this.state.score2
-   //     }
-   //     const dbRef = firebase.database().ref('/Player4').set({ userScore2 });
-
-   //  }
-
-   //  addScore2(e){
-   //     e.preventDefault();
-   //     const userScore2 = {
-   //        score2: this.state.score2
-   //     }
-   //     const dbRef = firebase.database().ref('/Player2').set({userScore1});
-       
-      
-      
-   //  }
-
-    ///////////////////////////////// start of user log in
-    // createAccount(e) {
-    //     e.preventDefault();
-    // }
-
-    // createUser(e) {
-    //     e.preventDefault();
-    //     const password = this.newPassword.value;
-    //     const confirm = this.confirmPassword.value;
-    //     if (password === confirm) {
-
-    //     } else {
-    //         alert("Check Password")
-    //     }
-    // }
-
+ 
     render() {
         return (
             <table className="scorecard">
@@ -209,8 +135,7 @@ export class NewPlayer extends React.Component{
                     <td>Out</td>
                  </tr>   
                     <tr className="player player1">
-                    
-                        <th className="inputScore">Input Score</th>
+                        <th className="inputScore"><button className="submitButton" onClick={this.addScore}>INPUT SCORE</button></th>
                         <td>
                             <form onSubmit={this.addScore}>
                                 <input type="text" name="score1" className="scoreInput" ref={ref => this.score1 = ref}/>
@@ -261,53 +186,6 @@ export class NewPlayer extends React.Component{
                                 <input type="text" name="score99" className="scoreInput" ref={ref => this.score99 = ref}/>
                             </form>
                         </td>
-                        {/* <td>
-                            <form onSubmit={this.addScore}>
-                                <input type="text" name="score2" className="scoreInput" ref={ref => this.score2 = ref}/>
-                            </form>
-                        </td>
-                        <td>
-                            <form onSubmit={this.addScore}>
-                                <input type="text" name="score3" className="scoreInput" ref={ref => this.score3 = ref}/>
-                            </form>
-                        </td>
-                        <td>
-                            <form onSubmit={this.addScore}>
-                                <input type="text" name="score4" className="scoreInput" ref={ref => this.score4 = ref}/>
-                            </form>
-                        </td>
-                        <td>
-                            <form onSubmit={this.addScore}>
-                                <input type="text" name="score5" className="scoreInput" ref={ref => this.score5 = ref}/>
-                            </form>
-                        </td>
-                        <td>
-                            <form onSubmit={this.addScore}>
-                                <input type="text" name="score1" className="scoreInput" ref={ref => this.score1 = ref}/>
-                            </form>
-                        </td>
-                        <td>
-                            <form onSubmit={this.addScore}>
-                                <input type="text" name="score6" className="scoreInput" ref={ref => this.score6 = ref}/>
-                            </form>
-                        </td>
-                        <td>
-                            <form onSubmit={this.addScore}>
-                                <input type="text" name="score7" className="scoreInput" ref={ref => this.score7 = ref}/>
-                            </form>
-                        </td>
-                        <td>
-                            <form onSubmit={this.addScore}>
-                                <input type="text" name="score8" className="scoreInput" ref={ref => this.score8 = ref}/>
-                            </form>
-                        </td>
-                        <td>
-                            <form onSubmit={this.addScore}>
-                                <input type="text" name="score9" className="scoreInput" ref={ref => this.score9 = ref}/>
-                            </form>
-                        </td> */}
-                     
-                        
                     </tr>
                  
                  <tr className="par">
@@ -322,73 +200,15 @@ export class NewPlayer extends React.Component{
                     <td>3</td>
                     <td>4</td>
                     <td>36</td>
-                 </tr>
-                 
-                        
-                        
-                           {this.state.scores.map((item, i) => {
-                              console.log(this.state.score);
-                              return (
-                                 // <div></div>
-                                 <Results item={item} key={`item-${i}`} removeScore={this.removeScore} />
-                                 // <tr className="player">
-                                 //    <th className="inputScore"><button onClick={() => this.removeScore(score.key)}>x</button></th>
-                                 //    <td>{item[0]}</td>
-                                 //    <td>{item[1]}</td>
-                                 //    <td>{item[2]}</td>
-                                 //    <td>{item[3]}</td>
-                                 //    <td>{item[4]}</td>
-                                 //    <td>{item[5]}</td>
-                                 //    <td>{item[6]}</td>
-                                 //    <td>{item[7]}</td>
-                                 //    <td>{item[8]}</td>
-                                 //    <td>{item[9]}</td>
-                                    
-                                 //    {/* {this.state.scores.map((item, i) => {
-                                 //       return <td>{item[0]}</td>
-                                 //    })}
-
-                                 //    {this.state.scores.map((item, i) => {
-                                 //       return <td>{item[1]}</td>
-                                 //    })}
-
-                                 //    {this.state.scores.map((item, i) => {
-                                 //       return <td>{item[2]}</td>
-                                 //    })}
-
-                                 //    {this.state.scores.map((item, i) => {
-                                 //       return <td>{item[3]}</td>
-                                 //    })}
-
-                                 //    {this.state.scores.map((item, i) => {
-                                 //       return <td>{item[4]}</td>
-                                 //    })}
-
-                                 //    {this.state.scores.map((item, i) => {
-                                 //       return <td>{item[5]}</td>
-                                 //    })}
-
-                                 //    {this.state.scores.map((item, i) => {
-                                 //       return <td>{item[6]}</td>
-                                 //    })}
-
-                                 //    {this.state.scores.map((item, i) => {
-                                 //       return <td>{item[7]}</td>
-                                 //    })}
-
-                                 //    {this.state.scores.map((item, i) => {
-                                 //       return <td>{item[8]}</td>
-                                 //    })}
-
-                                 //    {this.state.scores.map((item, i) => {
-                                 //       return <td>{item[9]}</td>
-                                 //    })} */}
-                                 // </tr>
-                                 // <Results data={item} key={item.key}/>
-                              )
-                           }).reverse()}
-                        
-        
+                 </tr> 
+                     {this.state.scores.map((item, i) => {
+                        // console.log(this.state.score);
+                        return (
+                           <Results item={item} key={`item-${i}`} removeScore={this.removeScore} />
+                        )
+                     }).reverse()}
+                  
+   
                 </tbody>
             </table>         
         )
